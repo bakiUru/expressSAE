@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Escuadra",
+        "price": 123.45,
+        "thumbail": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "id": 1
+    },
+    {
+        "title": "Calculadora",
+        "price": 238.55,
+        "thumbail": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "id": 2
+    },
+    {
+        "title": "Globo Terraqueo",
+        "price": 540.50,
+        "thumbail": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "id": 3
+    }
+
+]
+
