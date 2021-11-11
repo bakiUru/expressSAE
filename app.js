@@ -4,7 +4,6 @@ const fs = require('fs')
 
 //Server
 const express = require('express');
-const moment = require('moment');
 const PORT = 8080;
 
 
@@ -35,7 +34,7 @@ getProducts().then(resul=>{
     product = product.replaceAll(']', '');
     product = product.replaceAll(',', `<br>`);
     product = product.replaceAll('"', '');
-}).catch()
+});
 
 const server = app.listen(PORT, ()=>{
     console.log(`Servidor express escuchando por el puerto: ${PORT}`);
@@ -50,13 +49,20 @@ app.get('/productos', (req,res,next)=>{
       
 })
 
-app.get('/productosRandom', (req,res)=>{
-    contador ++;
-    res.send(`Visitas: ${contador}`);
-})
-
-app.get('/fyh', (req,res)=>{
-    //moment trae el momento exacto
-    let fecha_y_hora = moment().format('DD/M/YYYY hh:mm:ss');
-    res.send({fyh:fecha_y_hora});
+app.get('/productosRandom/:uid', (req,res)=>{
+    let id = parseInt(req.params.uid);
+    getProducts().then(resul=>{
+        //guardamos el resultado de la busqueda
+        let producto = resul.datos.find(product=>product.id === id);
+        console.log(id)
+        //Formato texto para representarlo en HTML
+        producto = JSON.stringify(producto);
+            if(producto)
+                res.send(`Producto ID: ${id}<br>${producto}`);
+            else 
+                res.send(`<h3>Producto No encontrado </h3><h4>ID: ${id} ¡No existe! </h4><br>`);
+    })
+       
+    
+    
 })
